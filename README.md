@@ -4,6 +4,8 @@ tiny Cardano app for public paid signals.
 
 ## what it does
 
+goal: to get actual signal from the Cardano community.
+
 - post a want: 1 ada
 - agree with a want: 1 ada
 - comment on a want: 1 ada
@@ -13,6 +15,8 @@ tiny Cardano app for public paid signals.
 ## treasury
 
 all ada goes straight to one public treasury address.
+
+ada will be spent how the community wants.
 
 preprod:
 

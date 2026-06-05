@@ -1,6 +1,6 @@
 # want
 
-tiny Cardano app for public paid signals.
+what does the Cardano community want?
 
 ## what it does
 

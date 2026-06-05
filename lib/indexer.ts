@@ -17,7 +17,11 @@ type IndexedTx = {
   utxos: TxUtxos;
 };
 
-let cache: { expiresAt: number; wants: Want[] } | null = null;
+const WANTS_FRESH_TTL_MS = readPositiveNumber(process.env.WANTS_CACHE_TTL_MS, 60_000);
+const WANTS_STALE_TTL_MS = readPositiveNumber(process.env.WANTS_STALE_CACHE_TTL_MS, 10 * 60_000);
+
+let cache: { freshUntil: number; staleUntil: number; wants: Want[] } | null = null;
+let refreshPromise: Promise<Want[]> | null = null;
 
 export function validateTreasuryPayment(txUtxos: TxUtxos, treasuryAddress = TREASURY_ADDRESS) {
   return txUtxos.outputs.reduce((total, output) => {
@@ -132,10 +136,35 @@ export function buildWantsFromIndexedTransactions(indexedTransactions: IndexedTx
 }
 
 export async function indexWantsFromChain() {
-  if (cache && cache.expiresAt > Date.now()) {
+  const now = Date.now();
+  if (cache && cache.freshUntil > now) {
     return cache.wants;
   }
 
+  if (refreshPromise) {
+    return cache && cache.staleUntil > now ? cache.wants : refreshPromise;
+  }
+
+  refreshPromise = refreshWantsFromChain()
+    .catch((error) => {
+      if (cache && cache.staleUntil > Date.now()) {
+        return cache.wants;
+      }
+
+      throw error;
+    })
+    .finally(() => {
+      refreshPromise = null;
+    });
+
+  if (cache && cache.staleUntil > now) {
+    return cache.wants;
+  }
+
+  return refreshPromise;
+}
+
+async function refreshWantsFromChain() {
   // TODO: A production release should use a real chain indexer. The MVP
   // intentionally reconstructs from recent treasury transactions with no DB.
   const addressTransactions = await fetchAddressTransactions();
@@ -163,6 +192,16 @@ export async function indexWantsFromChain() {
   }
 
   const wants = buildWantsFromIndexedTransactions(indexedTransactions);
-  cache = { expiresAt: Date.now() + 20_000, wants };
+  const now = Date.now();
+  cache = {
+    freshUntil: now + WANTS_FRESH_TTL_MS,
+    staleUntil: now + WANTS_FRESH_TTL_MS + WANTS_STALE_TTL_MS,
+    wants
+  };
   return wants;
+}
+
+function readPositiveNumber(value: string | undefined, fallback: number) {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
 }

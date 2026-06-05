@@ -15,7 +15,7 @@ export default async function HomePage() {
   try {
     wants = await indexWantsFromChain();
   } catch (indexError) {
-    error = indexError instanceof Error ? indexError.message : "unable to load wants.";
+    error = indexError instanceof Error ? indexError.message : "unable to load wants";
   }
 
   const summaries = await summarizeWantRows(wants);

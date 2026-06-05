@@ -15,7 +15,7 @@ type MeshWallet = {
 
 async function submitSignalTx(wallet: MeshWallet, metadata: Record<string, unknown>) {
   if (!TREASURY_ADDRESS) {
-    throw new Error("treasury address is not configured.");
+    throw new Error("treasury address is not configured");
   }
 
   await validateNetwork(wallet);

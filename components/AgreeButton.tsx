@@ -45,7 +45,7 @@ export function AgreeButton({
     } catch (submitError) {
       setStatus(null);
       if (!isUserRejectedWalletError(submitError)) {
-        setError(submitError instanceof Error ? submitError.message : "unable to submit signal.");
+        setError(submitError instanceof Error ? submitError.message : "unable to submit signal");
       }
     }
   }, [router, wallet, wantId]);
@@ -68,7 +68,7 @@ export function AgreeButton({
     } catch (connectError) {
       setPending(false);
       setStatus(null);
-      setError(connectError instanceof Error ? connectError.message : "could not connect.");
+      setError(connectError instanceof Error ? connectError.message : "could not connect");
     }
   }
 

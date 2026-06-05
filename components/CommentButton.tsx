@@ -52,7 +52,7 @@ export function CommentButton({
     } catch (submitError) {
       setStatus(null);
       if (!isUserRejectedWalletError(submitError)) {
-        setError(submitError instanceof Error ? submitError.message : "unable to comment.");
+        setError(submitError instanceof Error ? submitError.message : "unable to comment");
       }
     }
   }, [text, wallet, wantId]);
@@ -87,7 +87,7 @@ export function CommentButton({
       setPending(false);
       setOpenAfterConnect(false);
       setStatus(null);
-      setError(connectError instanceof Error ? connectError.message : "could not connect.");
+      setError(connectError instanceof Error ? connectError.message : "could not connect");
     }
   }
 

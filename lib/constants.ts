@@ -8,14 +8,14 @@ export const NETWORK = process.env.NEXT_PUBLIC_CARDANO_NETWORK || "preprod";
 
 export function assertServerConfig() {
   if (!TREASURY_ADDRESS) {
-    throw new Error("NEXT_PUBLIC_TREASURY_ADDRESS is required.");
+    throw new Error("NEXT_PUBLIC_TREASURY_ADDRESS is required");
   }
 
   if (!process.env.BLOCKFROST_PROJECT_ID) {
-    throw new Error("BLOCKFROST_PROJECT_ID is required.");
+    throw new Error("BLOCKFROST_PROJECT_ID is required");
   }
 
   if (!process.env.BLOCKFROST_BASE_URL) {
-    throw new Error("BLOCKFROST_BASE_URL is required.");
+    throw new Error("BLOCKFROST_BASE_URL is required");
   }
 }

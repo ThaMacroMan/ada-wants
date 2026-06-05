@@ -43,7 +43,7 @@ export function chunkUtf8(input: string, maxBytes = 64): string[] {
 
     if (encoder.encode(next).length > maxBytes) {
       if (!current) {
-        throw new Error(`A single character exceeds ${maxBytes} UTF-8 bytes.`);
+        throw new Error(`A single character exceeds ${maxBytes} UTF-8 bytes`);
       }
       chunks.push(current);
       current = char;
@@ -80,7 +80,7 @@ export function buildCreateMetadata(titleInput: string, bodyInput: string): Crea
 
 export function buildAgreeMetadata(wantTxHash: string): AgreeMetadata {
   if (!isValidTxHash(wantTxHash)) {
-    throw new Error("want id must be a 64-character transaction hash.");
+    throw new Error("want id must be a 64-character transaction hash");
   }
 
   return {
@@ -94,7 +94,7 @@ export function buildAgreeMetadata(wantTxHash: string): AgreeMetadata {
 
 export function buildCommentMetadata(wantTxHash: string, textInput: string): CommentMetadata {
   if (!isValidTxHash(wantTxHash)) {
-    throw new Error("want id must be a 64-character transaction hash.");
+    throw new Error("want id must be a 64-character transaction hash");
   }
 
   const text = validateComment(textInput);

@@ -8,7 +8,7 @@ export async function GET(_: Request, { params }: { params: Promise<{ txHash: st
   const { txHash } = await params;
 
   if (!isValidTxHash(txHash)) {
-    return NextResponse.json({ error: "invalid want id." }, { status: 400 });
+    return NextResponse.json({ error: "invalid want id" }, { status: 400 });
   }
 
   try {
@@ -17,6 +17,6 @@ export async function GET(_: Request, { params }: { params: Promise<{ txHash: st
     return NextResponse.json({ want });
   } catch (error) {
     console.error("Unable to index want.", error);
-    return NextResponse.json({ error: "unable to index want." }, { status: 500 });
+    return NextResponse.json({ error: "unable to index want" }, { status: 500 });
   }
 }

@@ -27,11 +27,11 @@ export function validateTitle(input: string) {
   const title = visibleSlice(input, 100);
 
   if (!title) {
-    throw new Error("enter a want.");
+    throw new Error("enter a want");
   }
 
   if (CONTROL_CHARS.test(title)) {
-    throw new Error("want cannot contain control characters.");
+    throw new Error("want cannot contain control characters");
   }
 
   return title;
@@ -41,7 +41,7 @@ export function validateBody(input: string) {
   const body = visibleSlice(input, 280);
 
   if (CONTROL_CHARS.test(body)) {
-    throw new Error("text cannot contain control characters.");
+    throw new Error("text cannot contain control characters");
   }
 
   return body;
@@ -51,11 +51,11 @@ export function validateComment(input: string) {
   const comment = visibleSlice(input, 240);
 
   if (!comment) {
-    throw new Error("enter a comment.");
+    throw new Error("enter a comment");
   }
 
   if (CONTROL_CHARS.test(comment)) {
-    throw new Error("comment cannot contain control characters.");
+    throw new Error("comment cannot contain control characters");
   }
 
   return comment;

@@ -14,14 +14,14 @@ export default async function WantPage({ params }: { params: Promise<{ txHash: s
   const { txHash } = await params;
 
   if (!isValidTxHash(txHash)) {
-    return <NotFound message="want not found on-chain." />;
+    return <NotFound message="want not found on-chain" />;
   }
 
   const wants = await indexWantsFromChain();
   const want = wants.find((item) => item.id === txHash.toLowerCase());
 
   if (!want) {
-    return <NotFound message="want not found on-chain." />;
+    return <NotFound message="want not found on-chain" />;
   }
 
   const [wantSummaries, commentSummaries] = await Promise.all([

@@ -9,6 +9,6 @@ export async function GET() {
     return NextResponse.json({ wants });
   } catch (error) {
     console.error("Unable to index wants.", error);
-    return NextResponse.json({ error: "unable to index wants." }, { status: 500 });
+    return NextResponse.json({ error: "unable to index wants" }, { status: 500 });
   }
 }

@@ -21,7 +21,7 @@ export function WalletConnect() {
     try {
       await connect(walletId);
     } catch (connectError) {
-      setError(connectError instanceof Error ? connectError.message : "could not connect.");
+      setError(connectError instanceof Error ? connectError.message : "could not connect");
     }
   }
 

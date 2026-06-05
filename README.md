@@ -13,9 +13,9 @@ goal: see what the community actually wants
 
 ## treasury
 
-all ada goes straight to one public treasury address.
+all ada goes straight to one public treasury address
 
-ada will be spent how the community wants
+ada will be used how the community wants
 
 mainnet:
 

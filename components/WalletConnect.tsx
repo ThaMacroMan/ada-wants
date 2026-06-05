@@ -1,13 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { useWallet, useWalletList } from "@meshsdk/react";
+import { useOutsideDismiss } from "@/lib/use-outside-dismiss";
 
 export function WalletConnect() {
   const wallets = useWalletList();
   const { address, connect, connected, connecting, disconnect } = useWallet();
+  const rootRef = useRef<HTMLDivElement | null>(null);
   const [open, setOpen] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const closeMenu = useCallback(() => setOpen(false), []);
+
+  useOutsideDismiss(open && !connected, rootRef, closeMenu);
 
   async function connectWallet(walletId: string) {
     setError(null);
@@ -38,7 +43,7 @@ export function WalletConnect() {
     connected && address ? `${address.slice(0, 6)}...${address.slice(-6)}` : "connect";
 
   return (
-    <div className="relative flex items-center">
+    <div ref={rootRef} className="relative flex items-center">
       <button
         type="button"
         onClick={handleClick}
@@ -49,7 +54,7 @@ export function WalletConnect() {
       </button>
 
       {open && !connected ? (
-        <div className="absolute right-0 top-full z-40 mt-2 min-w-44 rounded-lg border border-stone-800 bg-stone-950 p-2 shadow-2xl shadow-black">
+        <div className="absolute right-0 top-full z-[60] mt-2 min-w-44 rounded-lg border border-stone-800 bg-stone-950 p-2 shadow-2xl shadow-black">
           {wallets.length > 0 ? (
             wallets.map((wallet) => (
               <button

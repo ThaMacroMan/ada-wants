@@ -6,7 +6,7 @@ export function WantCard({ summary, want }: { summary?: string; want: Want }) {
   const commentActivity = getCommentActivity(want);
 
   return (
-    <article className="relative rounded-lg border border-stone-800 bg-stone-950/80 p-3 transition hover:border-stone-600 sm:p-4">
+    <article className="relative rounded-lg border border-stone-800 bg-stone-950/80 p-3 transition hover:z-50 hover:border-stone-600 focus-within:z-50 sm:p-4">
       <Link href={`/want/${want.id}`} className="absolute inset-0 rounded-lg" aria-label={want.title} />
       <div className="grid gap-2 sm:grid-cols-[minmax(0,1fr)_auto_auto] sm:items-center sm:gap-6">
         <div className="min-w-0">

@@ -54,7 +54,12 @@ export default async function WantPage({ params }: { params: Promise<{ txHash: s
             {wantSummary ? <p className="mt-2 text-xs text-stone-500 sm:mt-3 sm:text-sm">{wantSummary}</p> : null}
             <p className="mt-2 text-xs text-stone-400 sm:mt-3 sm:text-sm">{want.adaSignaled} ada want</p>
             <div className="mt-4 grid grid-cols-[1fr_auto_auto_auto] items-end gap-2 sm:mt-5">
-              <ShareButton size="equal" title={want.title} />
+              <ShareButton
+                adaSignaled={want.adaSignaled}
+                commentCount={want.comments.length}
+                size="equal"
+                title={want.title}
+              />
               <AgreeButton compact size="equal" wantId={want.id} />
               <CommentButton compact size="equal" wantId={want.id} />
             </div>

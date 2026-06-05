@@ -1,10 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useWallet, useWalletList } from "@meshsdk/react";
 import { explorerTxUrl } from "@/lib/explorer";
 import { agreeWithWantTx } from "@/lib/tx";
+import { useOutsideDismiss } from "@/lib/use-outside-dismiss";
 import { isUserRejectedWalletError } from "@/lib/wallet-error";
 
 export function AgreeButton({
@@ -19,11 +20,15 @@ export function AgreeButton({
   const router = useRouter();
   const wallets = useWalletList();
   const { connect, connected, connecting, wallet } = useWallet();
+  const rootRef = useRef<HTMLDivElement | null>(null);
   const [pending, setPending] = useState(false);
   const [walletOpen, setWalletOpen] = useState(false);
   const [txHash, setTxHash] = useState<string | null>(null);
   const [status, setStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const closeWalletMenu = useCallback(() => setWalletOpen(false), []);
+
+  useOutsideDismiss(walletOpen, rootRef, closeWalletMenu);
 
   const submitSignal = useCallback(async () => {
     if (!wallet) return;
@@ -88,7 +93,7 @@ export function AgreeButton({
   }
 
   return (
-    <div className={compact ? "relative flex w-full flex-col items-end gap-2" : "relative space-y-2"}>
+    <div ref={rootRef} className={compact ? "relative flex w-full flex-col items-end gap-2" : "relative space-y-2"}>
       <button
         type="button"
         onClick={submit}
@@ -104,7 +109,7 @@ export function AgreeButton({
         {connecting ? "connecting..." : "agree"}
       </button>
       {walletOpen ? (
-        <div className="absolute right-0 top-full z-40 mt-2 min-w-44 rounded-lg border border-stone-800 bg-stone-950 p-2 shadow-2xl shadow-black">
+        <div className="absolute right-0 top-full z-[60] mt-2 min-w-44 rounded-lg border border-stone-800 bg-stone-950 p-2 shadow-2xl shadow-black">
           {wallets.length > 0 ? (
             wallets.map((walletOption) => (
               <button

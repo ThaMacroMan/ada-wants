@@ -1,9 +1,20 @@
 "use client";
 
-export function ShareButton({ size = "default", title }: { size?: "default" | "equal"; title: string }) {
+export function ShareButton({
+  adaSignaled,
+  commentCount,
+  size = "default",
+  title
+}: {
+  adaSignaled: number;
+  commentCount: number;
+  size?: "default" | "equal";
+  title: string;
+}) {
   function shareToX() {
-    const params = new URLSearchParams({ text: `${title} - want` });
-    params.set("url", window.location.href);
+    const params = new URLSearchParams({
+      text: `want: ${title}\n\n${adaSignaled} ada wants - ${commentCount} ${commentCount === 1 ? "comment" : "comments"}\n\nsee it: ${window.location.href}`
+    });
     window.open(`https://x.com/intent/tweet?${params.toString()}`, "_blank", "noopener,noreferrer");
   }
 

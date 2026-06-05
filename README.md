@@ -1,6 +1,6 @@
-# want
+# ada wants
 
-what does the Cardano community want?
+what does the cardano community want?
 
 ## what it does
 

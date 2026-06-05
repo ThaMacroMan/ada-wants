@@ -15,7 +15,7 @@ export default async function HomePage() {
   try {
     wants = await indexWantsFromChain();
   } catch (indexError) {
-    error = indexError instanceof Error ? indexError.message : "unable to load wants";
+    error = formatLoadError(indexError);
   }
 
   const summaries = await summarizeWantRows(wants);
@@ -64,4 +64,14 @@ export default async function HomePage() {
       </footer>
     </main>
   );
+}
+
+function formatLoadError(error: unknown) {
+  const message = error instanceof Error ? error.message : "";
+
+  if (message.toLowerCase().includes("network token mismatch")) {
+    return "switch to mainnet cardano";
+  }
+
+  return message || "unable to load wants";
 }

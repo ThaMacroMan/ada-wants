@@ -4,23 +4,18 @@ what does the Cardano community want?
 
 ## what it does
 
-goal: to get actual signal from the Cardano community.
+goal: see what the community actually wants
 
 - post a want: 1 ada
 - agree with a want: 1 ada
 - comment on a want: 1 ada
 - read everything back from chain
-- no database
 
 ## treasury
 
 all ada goes straight to one public treasury address.
 
-ada will be spent how the community wants.
-
-preprod:
-
-`addr_test1vrc4ah0pekn2mncax5zq9eg5ehe47nssq6p72pqm8z6xclqyrrsp9`
+ada will be spent how the community wants
 
 mainnet:
 

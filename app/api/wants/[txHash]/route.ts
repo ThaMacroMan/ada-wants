@@ -15,8 +15,7 @@ export async function GET(_: Request, { params }: { params: Promise<{ txHash: st
     const wants = await indexWantsFromChain();
     const want = wants.find((item) => item.id === txHash.toLowerCase()) || null;
     return NextResponse.json({ want });
-  } catch (error) {
-    console.error("Unable to index want.", error);
+  } catch {
     return NextResponse.json({ error: "unable to index want" }, { status: 500 });
   }
 }

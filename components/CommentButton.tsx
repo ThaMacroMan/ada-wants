@@ -198,12 +198,12 @@ export function CommentButton({
                 rows={2}
                 disabled={!open}
                 placeholder="comment"
-                className="w-full resize-none rounded-md border border-stone-800 bg-transparent px-3 pb-12 pt-3 text-sm text-stone-50 outline-none transition placeholder:text-stone-600 focus:border-sky-500"
+                className="w-full resize-none rounded-md border border-stone-800 bg-transparent px-3 pb-14 pt-3 text-sm text-stone-50 outline-none transition placeholder:text-stone-600 focus:border-sky-500"
               />
               <span className="pointer-events-none absolute bottom-3 right-3 text-xs text-stone-600">
                 {text.length}/240
               </span>
-              <div className="absolute bottom-2 left-2 flex items-center gap-2">
+              <div className="absolute bottom-3 left-2 flex items-center gap-2">
                 <button
                   type="button"
                   onClick={submit}

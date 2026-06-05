@@ -38,11 +38,11 @@ export default async function WantPage({ params }: { params: Promise<{ txHash: s
         </div>
         <Link
           href="/"
-          className="absolute left-1/2 top-2 -translate-x-1/2 text-xl font-medium tracking-normal hover:underline sm:text-2xl"
+          className="absolute left-1/2 top-2 z-[90] -translate-x-1/2 text-xl font-medium tracking-normal hover:underline sm:text-2xl"
         >
-          want
+          ada wants
         </Link>
-        <div className="absolute right-0 top-0">
+        <div className="absolute right-0 top-0 z-[100]">
           <WalletConnect />
         </div>
       </header>
@@ -52,7 +52,7 @@ export default async function WantPage({ params }: { params: Promise<{ txHash: s
           <div>
             <h1 className="break-words text-3xl font-medium leading-tight sm:text-5xl sm:leading-tight">{want.title}</h1>
             {wantSummary ? <p className="mt-2 text-xs text-stone-500 sm:mt-3 sm:text-sm">{wantSummary}</p> : null}
-            <p className="mt-2 text-xs text-stone-400 sm:mt-3 sm:text-sm">{want.adaSignaled} ada want</p>
+            <p className="mt-2 text-xs text-stone-400 sm:mt-3 sm:text-sm">{want.adaSignaled} ada wants</p>
             <div className="mt-4 grid grid-cols-[1fr_auto_auto_auto] items-end gap-2 sm:mt-5">
               <ShareButton
                 adaSignaled={want.adaSignaled}

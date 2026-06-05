@@ -27,9 +27,9 @@ export default async function HomePage() {
           <CreateWantModal />
         </div>
         <p className="pointer-events-none absolute left-1/2 top-2 -translate-x-1/2 text-xl font-medium tracking-normal sm:text-2xl">
-          want
+          ada wants
         </p>
-        <div className="absolute right-0 top-0">
+        <div className="absolute right-0 top-0 z-[100]">
           <WalletConnect />
         </div>
       </header>

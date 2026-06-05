@@ -7,8 +7,7 @@ export async function GET() {
   try {
     const wants = await indexWantsFromChain();
     return NextResponse.json({ wants });
-  } catch (error) {
-    console.error("Unable to index wants.", error);
+  } catch {
     return NextResponse.json({ error: "unable to index wants" }, { status: 500 });
   }
 }

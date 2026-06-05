@@ -9,7 +9,7 @@ goal: see what the community actually wants
 - post a want: 1 ada
 - agree with a want: 1 ada
 - comment on a want: 1 ada
-- read everything back from chain
+- all on chain
 
 ## treasury
 
